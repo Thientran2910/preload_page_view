@@ -556,6 +556,19 @@ class _PreloadPageViewState extends State<PreloadPageView> {
     this._preloadPagesCount = preloadPagesCount;
   }
 
+  // didUpdateWidget is called when the widget configuration changes.
+  // If the preloadPagesCount changes, we need to validate it and update the
+  // _preloadPagesCount field.
+  @override
+  void didUpdateWidget(covariant PreloadPageView oldWidget) {
+    if (oldWidget.preloadPagesCount != widget.preloadPagesCount) {
+      _validatePreloadPagesCount(widget.preloadPagesCount);
+      _preloadPagesCount = widget.preloadPagesCount;
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   void initState() {
     super.initState();
